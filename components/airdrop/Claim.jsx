@@ -1,5 +1,6 @@
 import { useAddress } from "@thirdweb-dev/react";
 import React, { useState } from "react";
+import Swal from 'sweetalert2';
 import styles from "./Styled.module.scss";
 
 export default function Claim({ tokenDropContract }) {
@@ -14,10 +15,20 @@ export default function Claim({ tokenDropContract }) {
     try {
       const claimResult = await tokenDropContract?.claim(amountToClaim);
       console.log("Claimed", claimResult);
-      alert("Successfully claimed!");
+      Swal.fire({
+  title: 'Berhasil!',
+  text: 'Airdrop berhasil di claim',
+  icon: 'success',
+  confirmButtonText: 'Cool'
+});
     } catch (e) {
-      console.error(e);
-      alert(e);
+      console.log(e);
+      Swal.fire({
+  title: 'Gagal!',
+  text: 'Claim Airdrop Gagal...',
+  icon: 'error',
+  confirmButtonText: 'Okey'
+});
     }
   }
 

@@ -12,6 +12,7 @@ import { ChainId, ListingType, NATIVE_TOKENS } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { MARKETPLACE_ADDRESS } from "../../const/contract";
+import Swal from 'sweetalert2';
 import styles from "../../styles/Theme.module.scss";
 
 export default function ListingPage() {
@@ -85,10 +86,20 @@ export default function ListingPage() {
 
       // Simple one-liner for buying the NFT
       await marketplace?.buyoutListing(listingId, 1);
-      alert("NFT bought successfully!");
+      Swal.fire({
+          title: 'Berhasil!',
+          text: 'Pembelian NFT berhasil...',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        });
     } catch (error) {
-      console.error(error);
-      alert(error);
+      console.log(error);
+      Swal.fire({
+          title: 'Gagal!',
+          text: 'Pembelian NFT Gagal...',
+          icon: 'error',
+          confirmButtonText: 'Okey'
+        });
     }
   }
 

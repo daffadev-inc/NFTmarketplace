@@ -82,8 +82,7 @@
     display: block;
     text-align: start;
     @include mobile {
-        width: -webkit-fill-available;
-    }
+        width: -webkit-fill-available;}
 }
 
 .img_blog {

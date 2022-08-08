@@ -50,9 +50,21 @@ export default function Resell() {
       // If the transaction succeeds, take the user back to the homepage to view their listing!
       if (transactionResult) {
         Router.push(`/nft_collection`);
+      Swal.fire({
+          title: 'Berhasil!',
+          text: 'Posting NFT berhasil...',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        });
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      Swal.fire({
+          title: 'Gagal!',
+          text: 'Posting NFT Gagal...',
+          icon: 'error',
+          confirmButtonText: 'Okey'
+        });
     }
   }
 
@@ -72,7 +84,13 @@ export default function Resell() {
 
       return transaction;
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      Swal.fire({
+          title: 'Gagal!',
+          text: 'Posting NFT Gagal...',
+          icon: 'error',
+          confirmButtonText: 'Okey'
+        });
     }
   }
 
@@ -91,7 +109,13 @@ export default function Resell() {
 
       return transaction;
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      Swal.fire({
+          title: 'Gagal!',
+          text: 'Posting NFT Gagal...',
+          icon: 'error',
+          confirmButtonText: 'Okey'
+        });
     }
   }
 
