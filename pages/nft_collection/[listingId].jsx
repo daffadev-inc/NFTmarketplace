@@ -11,8 +11,8 @@ import {
 import { ChainId, ListingType, NATIVE_TOKENS } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { MARKETPLACE_ADDRESS } from "../../const/contractAddresses";
-import styles from "../../styles/Theme.module.css";
+import { MARKETPLACE_ADDRESS } from "../../const/contract";
+import styles from "../../styles/Theme.module.scss";
 
 export default function ListingPage() {
   const router = useRouter();
@@ -34,11 +34,11 @@ export default function ListingPage() {
   const [bidAmount, setBidAmount] = useState("");
 
   if (loadingListing) {
-    return <div className={styles.loadingOrError}>Loading...</div>;
+    return <div className={styles.loadingOrError}><i className={styles.spinner}></i></div>;
   }
 
   if (!listing) {
-    return <div className={styles.loadingOrError}>Listing not found</div>;
+    return <div className={styles.loadingOrError}><h3>Listing not found</h3></div>;
   }
 
   async function createBidOrOffer() {
@@ -54,7 +54,7 @@ export default function ListingPage() {
         await marketplace?.direct.makeOffer(
           listingId, // The listingId of the listing we want to make an offer for
           1, // Quantity = 1
-          NATIVE_TOKENS[ChainId.Rinkeby].wrapped.address, // Wrapped Ether address on Rinkeby
+          NATIVE_TOKENS[ChainId.Mumbai].wrapped.address, // Wrapped Ether address on Rinkeby
           bidAmount // The offer amount the user entered
         );
       }
@@ -103,9 +103,10 @@ export default function ListingPage() {
         </div>
 
         <div className={styles.rightListing}>
-          <h1>{listing.asset.name}</h1>
+          <h1 style={{marginTop: '0px'}}>{listing.asset.name}</h1>
           <p>
             Owned by <b>{listing.sellerAddress?.slice(0, 6)}</b>
+          <p>{listing.asset.id?.tokenId}</p>
           </p>
 
           <h2>
@@ -128,10 +129,9 @@ export default function ListingPage() {
             >
               Buy
             </button>
-            <p style={{ color: "grey" }}>|</p>
             <div
               style={{
-                display: "flex",
+                display: "none",
                 flexDirection: "row",
                 alignItems: "center",
                 gap: 8,

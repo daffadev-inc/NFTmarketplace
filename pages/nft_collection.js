@@ -5,8 +5,9 @@ import {
   useContractMetadata,
   ThirdwebNftMedia,
 } from "@thirdweb-dev/react";
-import { MARKETPLACE_ADDRESS } from "../const/contractAddresses";
-import styles from "../styles/Theme.module.css";
+import { IoHeart, IoShareSocial } from "react-icons/io5";
+import { MARKETPLACE_ADDRESS } from "../const/contract";
+import styles from "../styles/Theme.module.scss";
 
 export default function Listings() {
   const marketplace = useMarketplace(MARKETPLACE_ADDRESS);
@@ -23,20 +24,8 @@ export default function Listings() {
   return (
     <div className={styles.container}>
       <div className={styles.collectionContainer}>
-        <div className={styles.detailPageContainer}>
-          {!loadingMetadata ? (
-            <>
-              <h1>{contractMetadata?.name}</h1>
-              <p>{contractMetadata?.description}</p>
-            </>
-          ) : (
-            <p>Loading...</p>
-          )}
-          <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
-        </div>
-
         {/* Toggle between direct listing and auction listing */}
-        <div className={styles.listingTypeContainer}>
+        <div className={styles.hidden}>
           <input
             type="radio"
             name="listingType"
@@ -61,6 +50,18 @@ export default function Listings() {
             Auction Listing
           </label>
         </div>
+        <div className={styles.detailPageContainer}>
+          {!loadingMetadata ? (
+            <>
+              <h1>{contractMetadata?.name}</h1>
+              <p>{contractMetadata?.description}</p>
+            </>
+          ) : (
+            <p>Loading...</p>
+          )}
+          <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
+        </div>
+
 
         {!isLoading ? (
           <div className={styles.nftBoxGrid}>
@@ -70,22 +71,29 @@ export default function Listings() {
                 <a
                   className={styles.nftBox}
                   key={listing.id.toString()}
-                  href={`/listing/${listing.id}`}
+                  href={`/nft_collection/${listing.id}`}
                 >
                   <ThirdwebNftMedia
                     metadata={{ ...listing.asset }}
                     className={styles.nftMedia}
                   />
-                  <h4>{listing.asset.name}</h4>
-                  <p>
+                  <h4 style={{marginBottom: '0px'}}>{listing.asset.name}</h4>
+<div className={styles.btnBody}>
+<div className={styles.icons}>
+<IoHeart size={28}/>
+<IoShareSocial size={28}/>
+</div>
+                  <p className={styles.pils} style={{float: 'right', padding: '3px 8px', marginRight: '15px'}}>
+                    <i className={styles.polygon}></i>
                     {listing.buyoutCurrencyValuePerToken.displayValue}{" "}
                     {listing.buyoutCurrencyValuePerToken.symbol}
                   </p>
+</div>
                 </a>
               ))}
           </div>
         ) : (
-          <p>Loading...</p>
+          <div className={styles.loadingOrError}><i className={styles.spinner}></i></div>
         )}
       </div>
     </div>
