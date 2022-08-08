@@ -43,11 +43,11 @@ export default function Layout({ children, home }) {
         <p>Simple Blogging n Selling NFTs</p>
         <small>
           web3 App build w/ {' '}
-          <a style={{color: '#ffeb3b'}} target="_blank" href="https://thirdweb.com/"  rel="noreferrer">thirdweb SDK</a>.
+          <a style={{color: '#ffeb3b'}} target="_blank" href="https://github.com/daffadev-inc/NFTmarketplace"  rel="noreferrer">thirdweb SDK</a>.
         </small>
         <div className={styles.backToHome}>
           <Link href="/airdrop_uc">
-            <a className={utilStyles.button}>Airdrop UC Token   <IoChevronForwardOutline /> </a>
+            <a className={utilStyles.button}>Airdrop Token   <IoChevronForwardOutline /> </a>
           </Link>
         </div>
       </section>

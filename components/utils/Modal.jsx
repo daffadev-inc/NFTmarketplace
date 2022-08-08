@@ -25,6 +25,7 @@ const Modal = ({ show, onClose, children, title }) => {
     <StyledModalOverlay>
       <StyledModal>
         <StyledModalHeader>
+<StyledModalTitle>If you are using mobile phone, Please use dApp Browser</StyledModalTitle>
           <a style={{cursor: 'pointer'}} onClick={handleCloseClick}>
             <IoCloseCircleOutline color={'black'}/>
           </a>
@@ -56,10 +57,18 @@ const StyledModalBody = styled.div`
 
 const StyledModalHeader = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   font-size: 25px;
   color: black;
 `;
+
+const StyledModalTitle = styled.div`
+  display: flex;
+  align-content: center;
+  font-size: 15px;
+  color: black;
+`;
+
 
 const StyledModal = styled.div`
   background: white;

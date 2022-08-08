@@ -100,7 +100,7 @@ export default function Resell() {
       <div className={styles.container}>
         {/* Form Section */}
         <div className={styles.collectionContainer}>
-<div className="card bg-dark p-2 w-100 text-bg-dark">
+<div className={styles.cardStyle}>
           <h4 style={{
                     fontSize: "1rem"
                     }} className={styles.ourCollection}>

@@ -19,7 +19,7 @@ export default function Header() {
         <Link href="/" passHref>
           <Image
             src={`/logo.png`}
-            alt="Thirdweb Logo"
+            alt="Logo"
             className={styles.headerLogo}
             width={135} height={38}
           />
