@@ -112,3 +112,12 @@
     background: #424346;
     z-index: 9;}
 }
+.claim {
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 5px;
+    background: #00000047;
+}
+.claim:hover {
+    background: #03a9f463;
+}

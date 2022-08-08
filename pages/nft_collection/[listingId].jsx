@@ -109,7 +109,7 @@ export default function ListingPage() {
           <p>{listing.asset.id?.tokenId}</p>
           </p>
 
-          <h2>
+          <h2 style={{border: '2px dotted', padding: '5px 30px'}}>
             <b>{listing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
             {listing.buyoutCurrencyValuePerToken.symbol}
           </h2>

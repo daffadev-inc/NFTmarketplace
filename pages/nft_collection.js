@@ -80,8 +80,8 @@ export default function Listings() {
                   <h4 style={{marginBottom: '0px'}}>{listing.asset.name}</h4>
 <div className={styles.btnBody}>
 <div className={styles.icons}>
-<IoHeart size={28}/>
-<IoShareSocial size={28}/>
+<IoHeart size={28} className={styles.iconBorder}/>
+<IoShareSocial size={28} className={styles.iconBorder}/>
 </div>
                   <p className={styles.pils} style={{float: 'right', padding: '3px 8px', marginRight: '15px'}}>
                     <i className={styles.polygon}></i>

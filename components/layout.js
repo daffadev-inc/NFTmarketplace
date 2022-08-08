@@ -68,6 +68,9 @@ export default function Layout({ children, home }) {
         )}
       {!home && (
         <div className={styles.backToHome}>
+          <Link href="/airdrop_uc">
+            <p className={utilStyles.claim} style={{cursor: 'pointer'}}>Claim Airdrop</p>
+          </Link>
           <Link href="/">
             <a className={utilStyles.button}>← Back to home</a>
           </Link>

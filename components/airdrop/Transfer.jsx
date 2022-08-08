@@ -1,6 +1,6 @@
 import { useAddress } from "@thirdweb-dev/react";
 import React, { useState } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "./Styled.module.scss";
 
 export default function Transfer({ tokenDropContract }) {
   const address = useAddress();

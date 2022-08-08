@@ -1,7 +1,8 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import React, { useState, useEffect } from "react";
-import truncateAddress from "../lib/truncateAddress";
-import styles from "../styles/Home.module.css";
+import { TOKEN_DROP_ADDRESS } from "../../const/contract";
+import truncateAddress from "../../lib/truncateAddress";
+import styles from "./Styled.module.scss";
 
 export default function TokenHolders() {
   const [loading, setLoading] = useState(true);
@@ -9,7 +10,7 @@ export default function TokenHolders() {
   async function checkHolders() {
     const sdk = new ThirdwebSDK("mumbai"); // configure this to your network
 
-    const token = sdk.getToken("0xCFbB61aF7f8F39dc946086c378D8cd997C72e2F3");
+    const token = sdk.getToken(TOKEN_DROP_ADDRESS);
 
     const balances = await token.history.getAllHolderBalances();
     setHolders(balances);
@@ -21,12 +22,13 @@ export default function TokenHolders() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className={styles.loadingOrError}><i className={styles.spinner}></i></div>;
   }
 
   return (
     <>
-      <div className={styles.holderGrid}>
+      <div className={styles.cardStyle2}>
+      <h4 style={{margin: '0'}}>Token Holders</h4>
         {holders
           .sort(
             (a, b) =>

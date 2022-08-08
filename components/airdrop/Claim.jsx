@@ -1,10 +1,10 @@
 import { useAddress } from "@thirdweb-dev/react";
 import React, { useState } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "./Styled.module.scss";
 
 export default function Claim({ tokenDropContract }) {
   const address = useAddress();
-  const [amountToClaim, setAmountToClaim] = useState("");
+  const amountToClaim = 10000.00;
 
   async function claim() {
     if (!amountToClaim || !address) {
@@ -22,17 +22,14 @@ export default function Claim({ tokenDropContract }) {
   }
 
   return (
-    <div className={styles.claimGrid}>
-      <input
-        type="text"
-        placeholder="Enter amount to claim"
-        onChange={(e) => setAmountToClaim(e.target.value)}
-        className={`${styles.textInput} ${styles.noGapBottom}`}
-      />
-
-      <button onClick={claim} className={styles.mainButton}>
-        Claim
+    <div className={styles.claimBtn}>
+      <button onClick={claim} className={styles.claim_button}>
+        Claim AirDrop
       </button>
+<div>
+<p/>
+<small>Token Contract :<br/> 0xcFf85eB0bdCE164274BF52eAf6A90da2251419c8</small>
+</div>
     </div>
   );
 }
