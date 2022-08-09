@@ -25,6 +25,6 @@ BotFather adalah satu-satunya cara membuat bot Telegram tanpa coding untuk memer
 - Buka BotFather. Ketik Botfather di kotak pencarian Telegram kamu. Klik untuk membuka bot.
 - Ketikkan perintah /newbot untuk membuat bot baru. Pilih nama untuk bot baru kamu.
 - Pilih nama pengguna untuk bot baru kamu. Nama pengguna bisa panjang antara 5-32 karakter tidak sensitif huruf besar. Sebagai aturan, nama pengguna harus diakhiri dengan sufiks -bot, yaitu berbo_bot atau borotBot.
-- Setelah selesai, kamu akan menerima token API HTTP. yaitu sesuatu seperti: 435074775:AAHRQTtAOhQ1POBw9L98ru6Giek0qaytgajshYY.
+- Setelah selesai, kamu akan menerima token API HTTP.
 - Amankan token ini dan catat dan simpan dengan aman. Jika ada yang memegang token ini, mereka dapat sepenuhnya mengendalikan bot kamu.
 - Lalu kamu juga bisa memasukan bot kamu sendiri ke dalam group yang kamu bikin bersamaan dengan daffaBot untuk mendapatkan chat-ID.
