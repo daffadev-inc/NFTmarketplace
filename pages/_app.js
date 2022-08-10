@@ -1,6 +1,5 @@
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
-import Script from 'next/script'
-import Head from 'next/head'
+import Head from 'next/head';
 import Header from "../components/Header";
 import FootBar from "../components/FooBar";
 import "../styles/globals.css";
@@ -14,7 +13,6 @@ function MyApp({ Component, pageProps }) {
     <ThirdwebProvider desiredChainId={activeChainId}>
       <Head>
         <title>{siteTitle}</title>
-        <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1171588080744378'></script>
       </Head>
       <Header />
       <Component {...pageProps} />
