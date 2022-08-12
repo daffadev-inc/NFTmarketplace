@@ -114,24 +114,21 @@ export default function ListingPage() {
         </div>
 
         <div className={styles.rightListing}>
+<div className={styles.titleSection}>
           <h1 style={{marginTop: '0px'}}>{listing.asset.name}</h1>
           <p>
             Owned by <b>{listing.sellerAddress?.slice(0, 6)}</b>
           <p>{listing.asset.id?.tokenId}</p>
           </p>
-
-          <h2 style={{border: '2px dotted', padding: '5px 30px'}}>
+</div>
+          <h2 style={{display: 'flex', alignItems: 'center', border: '2px dotted', padding: '5px 10px', height: 'fit-content'}}>
+                    <i className={styles.polygon} style={{width: '34px', height: '34px'}}></i>
             <b>{listing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
             {listing.buyoutCurrencyValuePerToken.symbol}
           </h2>
 
           <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 20,
-              alignItems: "center",
-            }}
+            className={styles.rowButton}
           >
             <button
               style={{ borderStyle: "none" }}

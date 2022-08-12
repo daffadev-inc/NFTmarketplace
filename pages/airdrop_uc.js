@@ -29,7 +29,7 @@ export default function Airdrop() {
           <a onClick={disconnectWallet} className={styles.secondaryButton}>
             Disconnect Wallet
           </a>
-          <p>Your address: {truncateAddress(address)}</p>
+          <p style={{border: '2px dotted', padding: '0 10px'}}>Your address: {truncateAddress(address)}</p>
 </div>
 <div className={styles.airdropBox}>
     <div className={`${styles.dropContent} ${styles.cardStyle}`}>

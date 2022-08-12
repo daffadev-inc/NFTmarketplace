@@ -46,7 +46,7 @@ export default function Header() {
               className={styles.iconButton}
               onClick={() => disconnectWallet()}
             >
-              <IoLogOut size={32} />
+              <IoLogOut className={styles.walletIcon} />
             </a>
 </div>
           </>
@@ -55,7 +55,7 @@ export default function Header() {
             className={styles.iconButton} 
             onClick={() => setShowModal(true)}
           >
-            <IoWallet size={32} />
+            <IoWallet className={styles.walletIcon} />
           </a>
         )}
       </div>

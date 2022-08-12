@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Script from 'next/script';
-import styles from "../styles/Theme.module.scss";
+import styles from '../styles/Theme.module.scss'
 import Link from 'next/link';
 import { IoChevronForwardOutline } from "react-icons/io5";
 
