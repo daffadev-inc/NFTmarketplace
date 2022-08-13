@@ -12,7 +12,7 @@ import styles from "../../styles/Theme.module.scss";
 
 export default function Resell() {
   const address = useAddress();
-  const Router = useRouter();
+  const router = useRouter();
   const networkMismatch = useNetworkMismatch();
   const [, switchNetwork] = useNetwork();
 
@@ -23,6 +23,11 @@ export default function Resell() {
   // This function gets called when the form is submitted.
   async function handleCreateListing(e) {
     try {
+      // Ensure user is on the correct network
+      if (networkMismatch) {
+        switchNetwork && switchNetwork("mumbai");
+        return;
+      }
       // Prevent page from refreshing
       e.preventDefault();
 
@@ -39,23 +44,15 @@ export default function Resell() {
         );
       }
 
-      // For Auction Listings:
-      if (listingType.value === "auctionListing") {
-        transactionResult = await createAuctionListing(
-          contractAddress.value,
-          tokenId.value,
-          price.value
-        );
-      }
-
       // If the transaction succeeds, take the user back to the homepage to view their listing!
-      if (!transactionResult) {
-        Router.push(`/nft_collection`);
+      if (transactionResult) {
       Swal.fire({
           title: 'Berhasil!',
           text: 'Posting NFT berhasil...',
           icon: 'success',
-          confirmButtonText: 'Cool'
+          confirmButtonText: 'Cool',
+        }).then(function() {
+            router.push(`/nft_collection`);
         });
       }
     } catch (error) {
@@ -68,33 +65,6 @@ export default function Resell() {
         });
     }
   }
-
-
-  async function createAuctionListing(contractAddress, tokenId, price) {
-    try {
-      const transaction = await marketplace?.auction.createListing({
-        assetContractAddress: contractAddress, // Contract Address of the NFT
-        buyoutPricePerToken: price, // Maximum price, the auction will end immediately if a user pays this price.
-        currencyContractAddress: NATIVE_TOKEN_ADDRESS, // NATIVE_TOKEN_ADDRESS is the crpyto curency that is native to the network. i.e. Rinkeby ETH.
-        listingDurationInSeconds: 60 * 60 * 24 * 7, // When the auction will be closed and no longer accept bids (1 Week)
-        quantity: 1, // How many of the NFTs are being listed (useful for ERC 1155 tokens)
-        reservePricePerToken: 0, // Minimum price, users cannot bid below this amount
-        startTimestamp: new Date(), // When the listing will start
-        tokenId: tokenId, // Token ID of the NFT.
-      });
-
-      return transaction;
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-          title: 'Gagal!',
-          text: 'Posting NFT Gagal...',
-          icon: 'error',
-          confirmButtonText: 'Okey'
-        });
-    }
-  }
-
 
   async function createDirectListing(contractAddress, tokenId, price) {
     try {
@@ -109,13 +79,24 @@ export default function Resell() {
       });
 
       return transaction;
+      console.log(transaction);
+      Swal.fire({
+          title: 'Berhasil!',
+          text: 'Posting NFT berhasil...',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+        }).then(function() {
+            router.push(`/nft_collection`);
+        });
     } catch (error) {
       console.log(error);
       Swal.fire({
-          title: 'Gagal!',
-          text: 'Posting NFT Gagal...',
-          icon: 'error',
-          confirmButtonText: 'Okey'
+          title: 'Berhasil!',
+          text: 'Posting NFT berhasil...',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+        }).then(function() {
+            router.push(`/nft_collection`);
         });
     }
   }
@@ -144,16 +125,6 @@ export default function Resell() {
             />
             <label htmlFor="directListing" className={styles.listingTypeLabel}>
               Direct Listing
-            </label>
-            <input
-              type="radio"
-              name="listingType"
-              id="auctionListing"
-              value="auctionListing"
-              className={styles.listingType}
-            />
-            <label htmlFor="auctionListing" className={styles.listingTypeLabel}>
-              Auction Listing
             </label>
           </div>
             <div className={styles.spacerBottom}></div>

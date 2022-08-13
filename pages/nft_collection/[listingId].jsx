@@ -91,6 +91,8 @@ export default function ListingPage() {
           text: 'Pembelian NFT berhasil...',
           icon: 'success',
           confirmButtonText: 'Cool'
+        }).then(function() {
+            router.push(`/nft_collection`);
         });
     } catch (error) {
       console.log(error);
@@ -99,6 +101,8 @@ export default function ListingPage() {
           text: 'Pembelian NFT Gagal...',
           icon: 'error',
           confirmButtonText: 'Okey'
+        }).then(function() {
+            router.push(`/nft_collection`);
         });
     }
   }
