@@ -11,6 +11,7 @@ import {
 import { ChainId, ListingType, NATIVE_TOKENS } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Script from 'next/script';
 import { MARKETPLACE_ADDRESS } from "../../const/contract";
 import Swal from 'sweetalert2';
 import styles from "../../styles/Theme.module.scss";

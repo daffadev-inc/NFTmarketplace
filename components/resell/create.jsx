@@ -1,44 +1,62 @@
 import {
+  useAddress,
+  useMetamask,
+  useWalletConnect,
+  useCoinbaseWallet,
   useMarketplace,
   useNetwork,
   useNetworkMismatch,
-  useAddress
 } from "@thirdweb-dev/react";
 import { NATIVE_TOKEN_ADDRESS, TransactionResult } from "@thirdweb-dev/sdk";
-import { MARKETPLACE_ADDRESS } from "../../const/contract";
 import { useRouter } from "next/router";
-import Script from 'next/script';
 import Swal from 'sweetalert2';
 import styles from "../../styles/Theme.module.scss";
 
-export default function Resell() {
-  const address = useAddress();
+const Create = () => {
+  // Next JS Router hook to redirect to other pages
   const router = useRouter();
   const networkMismatch = useNetworkMismatch();
   const [, switchNetwork] = useNetwork();
+  const address = useAddress();
+
+  const connectWithMetamask = useMetamask();
+  const connectWithWalletConnect = useWalletConnect();
+  const connectWithCoinbaseWallet = useCoinbaseWallet();
 
   // Connect to our marketplace contract via the useMarketplace hook
-
-  const marketplace = useMarketplace(MARKETPLACE_ADDRESS);
+  const marketplace = useMarketplace(
+    "0xcb86D7873bf1De2034b7E598D3db900c25406b77" // Your marketplace contract address here
+  );
 
   // This function gets called when the form is submitted.
-  async function handleCreateListing(e) {
+  async function handleCreateListing(e, any) {
     try {
       // Ensure user is on the correct network
       if (networkMismatch) {
-        switchNetwork && switchNetwork("mumbai");
+        switchNetwork && switchNetwork(80001);
         return;
       }
+
       // Prevent page from refreshing
       e.preventDefault();
 
       // De-construct data from form submission
-      const { listingType, contractAddress, tokenId, price } = e.target.elements;
+      const { listingType, contractAddress, tokenId, price } =
+        e.target.elements;
 
       // Depending on the type of listing selected, call the appropriate function
       // For Direct Listings:
       if (listingType.value === "directListing") {
         transactionResult = await createDirectListing(
+          contractAddress.value,
+          tokenId.value,
+          price.value
+        );
+      }
+
+      // For Auction Listings:
+      if (listingType.value === "auctionListing") {
+        transactionResult = await createAuctionListing(
           contractAddress.value,
           tokenId.value,
           price.value
@@ -107,7 +125,7 @@ export default function Resell() {
   }
 
   return (
-<form onSubmit={(e) => handleCreateListing(e)}>
+    <form onSubmit={(e) => handleCreateListing(e)}>
       <div className={styles.container}>
         {/* Form Section */}
         <div className={styles.collectionContainer}>
@@ -118,17 +136,16 @@ export default function Resell() {
             Reselling your NFT to marketplace
           </h4>
             <div className={styles.spacerBottom}></div>
-          {/* Toggle between direct listing and auction listing */}
-          <div className={styles.hidden}>
+          {/* <div className={styles.hidden}>
             <input
               type="radio"
               name="listingType"
               id="directListing"
               value="directListing"
               defaultChecked
-              className={styles.listingType}
+              className="btn-check"
             />
-            <label htmlFor="directListing" className={styles.listingTypeLabel}>
+            <label htmlFor="directListing" className="btn btn-outline-success">
               Direct Listing
             </label>
             <input
@@ -136,43 +153,53 @@ export default function Resell() {
               name="listingType"
               id="auctionListing"
               value="auctionListing"
-              className={styles.listingType}
+              className="btn-check"
             />
-            <label htmlFor="auctionListing" className={styles.listingTypeLabel}>
+            <label htmlFor="auctionListing" className="btn btn-outline-info">
               Auction Listing
             </label>
-          </div>
-            <div className={styles.spacerBottom}></div>
-
+          </div> */}
+        <hr className={styles.divider}/>
           {/* NFT Contract Address Field */}
+<div className="row">
+    <div className="col-12">
+        <div className="form-floating mb-3" style={{textAlign: "start"}}>
           <input
             type="text"
             name="contractAddress"
-            className={styles.textInput}
+            className={styles.textInput} id="Contract"
             placeholder="NFT Contract Address"
           />
-
+        </div>
+       </div>
+    </div>
+<div className="row">
+    <div className="col-12 col-sm-6">
           {/* NFT Token ID Field */}
+        <div className="form-floating mb-3" style={{textAlign: "start"}}>
           <input
             type="text"
             name="tokenId"
-            className={styles.textInput}
+            className={styles.textInput} id="Token"
             placeholder="NFT Token ID"
           />
-
+        </div>
+</div>
+    <div className="col-12 col-sm-6">
           {/* Sale Price For Listing Field */}
+        <div className="form-floating mb-3" style={{textAlign: "start"}}>
           <input
             type="text"
             name="price"
-            className={styles.textInput}
+            className={styles.textInput} id="Price"
             placeholder="Sale Price"
           />
+            </div>
 
             <div className={styles.spacer}></div>
-        <div className="alert alert-info" role="alert">
+        <div>
           <small>Setidaknya akan ada 2 kali transaksi untuk listing NFT</small>
         </div>
-
           <button
             type="submit"
             className={styles.mainButton}
@@ -180,9 +207,13 @@ export default function Resell() {
           >
             List NFT
           </button>
-</div>
         </div>
-      </div>
+    </div>
+  </div>
+ </div>
+</div>
     </form>
   );
-}
+};
+
+export default Create;

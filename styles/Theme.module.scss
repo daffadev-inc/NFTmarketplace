@@ -455,6 +455,12 @@
   position: fixed;
 }
 
+.btnRadio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .listingTypeLabel {
   display: inline-block;
   background-color: #262936a1;
