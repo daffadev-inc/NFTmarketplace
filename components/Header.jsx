@@ -30,8 +30,8 @@ export default function Header() {
         <Link href="/nft_collection">
           <a className={styles.headerItem}><IoImages /> NFTs Collection</a>
         </Link>
-        <Link href="/resell_nft">
-          <a className={styles.headerItem}><IoPush /> Resell NFT</a>
+        <Link href="/upload_nft">
+          <a className={styles.headerItem}><IoPush /> Upload NFT</a>
         </Link>
 </div>
 </div>

@@ -77,7 +77,8 @@ input[type=checkbox] {
     display: none;
 }
 
-input:hover&&input:focus {border: 1px dotted #fff;border-color: #418dff;background-color: transparent;}
+input{color:#fff;}
+input:hover&&input:focus {border: 1px dotted #fff;border-color: #fff;background-color: transparent;}
 
 ::-webkit-scrollbar {
   width: 5px;

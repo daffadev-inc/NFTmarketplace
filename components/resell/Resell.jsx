@@ -183,7 +183,7 @@ export default function Resell() {
           >
             List NFT
           </button>
-</div>
+         </div>
         </div>
       </div>
     </form>
