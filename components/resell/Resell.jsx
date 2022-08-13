@@ -7,6 +7,7 @@ import {
 import { NATIVE_TOKEN_ADDRESS, TransactionResult } from "@thirdweb-dev/sdk";
 import { MARKETPLACE_ADDRESS } from "../../const/contract";
 import { useRouter } from "next/router";
+import Swal from 'sweetalert2';
 import styles from "../../styles/Theme.module.scss";
 
 export default function Resell() {

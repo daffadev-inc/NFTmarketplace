@@ -1,4 +1,4 @@
-import { useAddress, useMetamask, useDisconnect } from "@thirdweb-dev/react";
+import { useAddress, useDisconnect, useChainId } from "@thirdweb-dev/react";
 import Link from "next/link";
 import Image from 'next/image';
 import React, { useState } from "react";
@@ -8,10 +8,11 @@ import Modal from '../components/utils/Modal'
 
 export default function Header() {
   const [showModal, setShowModal] = useState(false);
-  // Helpful thirdweb hooks to connect and manage the wallet from metamask.
+
   const address = useAddress();
-  const connectWithMetamask = useMetamask();
   const disconnectWallet = useDisconnect();
+  const chainId = useChainId();
+ 
 
   return (
     <div className={styles.header}>
@@ -37,6 +38,7 @@ export default function Header() {
       </div>
 
       <div className={styles.right}>
+<div>{chainId}</div>
         {address ? (
           <>
 <div className={styles.pils}>
@@ -64,3 +66,4 @@ export default function Header() {
     </div>
   );
 }
+

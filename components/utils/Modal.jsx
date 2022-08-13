@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import styles from "../../styles/Theme.module.scss";
 
+
 const Modal = ({ show, onClose, children, title }) => {
   const [isBrowser, setIsBrowser] = useState(false);
   const address = useAddress();
