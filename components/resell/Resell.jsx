@@ -49,7 +49,7 @@ export default function Resell() {
       }
 
       // If the transaction succeeds, take the user back to the homepage to view their listing!
-      if (transactionResult) {
+      if (!transactionResult) {
         Router.push(`/nft_collection`);
       Swal.fire({
           title: 'Berhasil!',

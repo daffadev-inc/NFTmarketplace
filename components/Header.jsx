@@ -38,7 +38,7 @@ export default function Header() {
       </div>
 
       <div className={styles.right}>
-<div>{chainId}</div>
+<div className={styles.networkId}>{chainId}</div>
         {address ? (
           <>
 <div className={styles.pils}>
