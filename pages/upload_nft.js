@@ -11,6 +11,8 @@ import {
 } from "@thirdweb-dev/react";
 import { ChainId, NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
+import Image from 'next/image';
+import Swal from 'sweetalert2';
 import { useRef } from "react";
 import styles from "../styles/Theme.module.scss";
 
@@ -100,7 +102,14 @@ const Create = () => {
 
       // If the transaction succeeds, take the user back to the homepage to view their listing!
       if (transactionResult) {
-        router.push(`/`);
+      Swal.fire({
+          title: 'Berhasil!',
+          text: 'Posting NFT berhasil...',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+        }).then(function() {
+            router.push(`/nft_collection`);
+        });
       }
     } catch (error) {
       console.error(error);
@@ -171,14 +180,13 @@ const Create = () => {
   return (
     <form onSubmit={(e) => handleCreateListing(e)}>
       <div className={styles.container}>
-        {/* Form Section */}
+
         <div className={styles.collectionContainer}>
           <h1 className={styles.ourCollection}>
             Upload your NFT to the marketplace:
           </h1>
 
-          {/* Toggle between direct listing and auction listing */}
-          <div className={styles.listingTypeContainer}>
+        {/* <div className={styles.listingTypeContainer}>
             <input
               type="radio"
               name="listingType"
@@ -200,13 +208,15 @@ const Create = () => {
             <label htmlFor="auctionListing" className={styles.listingTypeLabel}>
               Auction Listing
             </label>
-          </div>
+          </div> */}
 
           {file ? (
-            <img
+            <Image
               src={URL.createObjectURL(file)}
               style={{ cursor: "pointer", maxHeight: 250, borderRadius: 8 }}
               onClick={() => setFile(undefined)}
+              width={250}
+              height={250}
             />
           ) : (
             <div
