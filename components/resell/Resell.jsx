@@ -7,7 +7,6 @@ import {
 import { NATIVE_TOKEN_ADDRESS, TransactionResult } from "@thirdweb-dev/sdk";
 import { MARKETPLACE_ADDRESS } from "../../const/contract";
 import { useRouter } from "next/router";
-import Script from 'next/script';
 import Swal from 'sweetalert2';
 import styles from "../../styles/Theme.module.scss";
 
@@ -24,11 +23,6 @@ export default function Resell() {
   // This function gets called when the form is submitted.
   async function handleCreateListing(e) {
     try {
-      // Ensure user is on the correct network
-      if (networkMismatch) {
-        switchNetwork && switchNetwork("mumbai");
-        return;
-      }
       // Prevent page from refreshing
       e.preventDefault();
 
@@ -39,6 +33,15 @@ export default function Resell() {
       // For Direct Listings:
       if (listingType.value === "directListing") {
         transactionResult = await createDirectListing(
+          contractAddress.value,
+          tokenId.value,
+          price.value
+        );
+      }
+
+      // For Auction Listings:
+      if (listingType.value === "auctionListing") {
+        transactionResult = await createAuctionListing(
           contractAddress.value,
           tokenId.value,
           price.value
