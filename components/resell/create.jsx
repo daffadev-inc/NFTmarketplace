@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import Swal from 'sweetalert2';
 import styles from "../../styles/Theme.module.scss";
 
-const Create = () => {
+export default function Create() {
   // Next JS Router hook to redirect to other pages
   const router = useRouter();
   const networkMismatch = useNetworkMismatch();
@@ -97,6 +97,14 @@ const Create = () => {
       });
 
       return transaction;
+      Swal.fire({
+          title: 'Berhasil!',
+          text: 'NFT berhasil listing...',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        }).then(function() {
+            router.push(`/nft_collection`);
+        });
     } catch (error) {
       console.error(error);
     }
@@ -119,6 +127,14 @@ const Create = () => {
       });
 
       return transaction;
+      Swal.fire({
+          title: 'Berhasil!',
+          text: 'NFT berhasil listing...',
+          icon: 'success',
+          confirmButtonText: 'Cool'
+        }).then(function() {
+            router.push(`/nft_collection`);
+        });
     } catch (error) {
       console.error(error);
     }
@@ -135,8 +151,12 @@ const Create = () => {
                     }} className={styles.ourCollection}>
             Reselling your NFT to marketplace
           </h4>
+        <div>
+          <small style={{fontSize: 'small'}}>NFT contract: 0xca5798663f323E5886321F1AFCF3AcA83B9d1F50</small>
+        </div>
             <div className={styles.spacerBottom}></div>
-          {/* <div className={styles.hidden}>
+          {/*  */}
+          <div className={styles.hidden}>
             <input
               type="radio"
               name="listingType"
@@ -158,7 +178,7 @@ const Create = () => {
             <label htmlFor="auctionListing" className="btn btn-outline-info">
               Auction Listing
             </label>
-          </div> */}
+          </div>
         <hr className={styles.divider}/>
           {/* NFT Contract Address Field */}
 <div className="row">
@@ -214,6 +234,4 @@ const Create = () => {
 </div>
     </form>
   );
-};
-
-export default Create;
+}

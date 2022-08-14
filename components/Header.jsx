@@ -2,7 +2,7 @@ import { useAddress, useDisconnect, useChainId } from "@thirdweb-dev/react";
 import Link from "next/link";
 import Image from 'next/image';
 import React, { useState } from "react";
-import { IoWallet, IoLogOut, IoImages, IoPush } from "react-icons/io5";
+import { IoWallet, IoLogOut, IoLogoUsd, IoImages, IoShareOutline } from "react-icons/io5";
 import styles from "../styles/Theme.module.scss";
 import Modal from '../components/utils/Modal'
 
@@ -31,7 +31,10 @@ export default function Header() {
           <a className={styles.headerItem}><IoImages /> NFTs Collection</a>
         </Link>
         <Link href="/upload_nft">
-          <a className={styles.headerItem}><IoPush /> Upload NFT</a>
+          <a className={styles.headerItem}><IoShareOutline /> Upload NFT</a>
+        </Link>
+        <Link href="/resell_nft">
+          <a className={styles.headerItem}><IoLogoUsd /> Resell NFT</a>
         </Link>
 </div>
 </div>

@@ -102,8 +102,6 @@ export default function ListingPage() {
           text: 'Pembelian NFT Gagal...',
           icon: 'error',
           confirmButtonText: 'Okey'
-        }).then(function() {
-            router.push(`/nft_collection`);
         });
     }
   }

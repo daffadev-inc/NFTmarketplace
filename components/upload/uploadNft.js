@@ -134,6 +134,14 @@ const Create = () => {
         {
           onSuccess: (tx) => {
             return tx;
+          Swal.fire({
+              title: 'Berhasil!',
+              text: 'NFT berhasil diupload...',
+              icon: 'success',
+              confirmButtonText: 'Cool'
+            }).then(function() {
+                router.push(`/nft_collection`);
+            });
           },
         }
       );
@@ -157,6 +165,14 @@ const Create = () => {
         {
           onSuccess: (tx) => {
             return tx;
+          Swal.fire({
+              title: 'Berhasil!',
+              text: 'NFT berhasil diupload...',
+              icon: 'success',
+              confirmButtonText: 'Cool'
+            }).then(function() {
+                router.push(`/nft_collection`);
+            });
           },
         }
       );
