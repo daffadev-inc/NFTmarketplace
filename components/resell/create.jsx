@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import {
   useAddress,
   useMetamask,
@@ -8,10 +9,14 @@ import {
   useNetworkMismatch,
 } from "@thirdweb-dev/react";
 import { NATIVE_TOKEN_ADDRESS, TransactionResult } from "@thirdweb-dev/sdk";
+import { NFT_COLLECTION_ADDRESS } from "../../const/contract";
 import { useRouter } from "next/router";
 import Swal from 'sweetalert2';
 import styles from "../../styles/Theme.module.scss";
 
+const pageTitle = 'Resell NFT'
+const siteTitle = 'DaffaDev NFT marketplace'
+const contract = (NFT_COLLECTION_ADDRESS)
 export default function Create() {
   // Next JS Router hook to redirect to other pages
   const router = useRouter();
@@ -141,6 +146,10 @@ export default function Create() {
   }
 
   return (
+<>
+      <Head>
+        <title>{pageTitle} - {siteTitle}</title>
+      </Head>
     <form onSubmit={(e) => handleCreateListing(e)}>
       <div className={styles.container}>
         {/* Form Section */}
@@ -152,7 +161,7 @@ export default function Create() {
             Reselling your NFT to marketplace
           </h4>
         <div>
-          <small style={{fontSize: 'small'}}>NFT contract: 0xca5798663f323E5886321F1AFCF3AcA83B9d1F50</small>
+          <small style={{fontSize: 'small'}}>our NFT contract<br/>{contract}</small>
         </div>
             <div className={styles.spacerBottom}></div>
           {/*  */}
@@ -233,5 +242,6 @@ export default function Create() {
  </div>
 </div>
     </form>
+</>
   );
 }

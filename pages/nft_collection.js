@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Head from 'next/head'
 import {
   useMarketplace,
   useActiveListings,
@@ -9,6 +10,8 @@ import { IoHeart, IoShareSocial } from "react-icons/io5";
 import { MARKETPLACE_ADDRESS } from "../const/contract";
 import styles from "../styles/Theme.module.scss";
 
+const pageTitle = 'NFT Collection'
+const siteTitle = 'DaffaDev NFT marketplace'
 export default function Listings() {
   const marketplace = useMarketplace(MARKETPLACE_ADDRESS);
   const { data: listings, isLoading } = useActiveListings(marketplace);
@@ -22,6 +25,10 @@ export default function Listings() {
   const [filter, setFilter] = useState(0); // 0 = direct, auction = 1
 
   return (
+<>
+      <Head>
+        <title>{pageTitle} - {siteTitle}</title>
+      </Head>
     <div className={styles.container}>
       <div className={styles.collectionContainer}>
         {/* Toggle between direct listing and auction listing */}
@@ -97,5 +104,6 @@ export default function Listings() {
         )}
       </div>
     </div>
+</>
   );
 }

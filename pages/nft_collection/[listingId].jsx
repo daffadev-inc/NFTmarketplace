@@ -8,6 +8,7 @@ import {
   useMakeBid,
   useBuyNow,
 } from "@thirdweb-dev/react";
+import Head from 'next/head'
 import { ChainId, ListingType, NATIVE_TOKENS } from "@thirdweb-dev/sdk";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -16,6 +17,8 @@ import { MARKETPLACE_ADDRESS } from "../../const/contract";
 import Swal from 'sweetalert2';
 import styles from "../../styles/Theme.module.scss";
 
+const pageTitle = 'Listing'
+const siteTitle = 'DaffaDev NFT marketplace'
 export default function ListingPage() {
   const router = useRouter();
   const { listingId } = router.query;
@@ -107,6 +110,10 @@ export default function ListingPage() {
   }
 
   return (
+<>
+      <Head>
+        <title>{pageTitle} - {siteTitle}</title>
+      </Head>
     <div className={styles.container}>
       <div className={styles.listingContainer}>
         <div className={styles.leftListing}>
@@ -121,10 +128,12 @@ export default function ListingPage() {
           <h1 style={{marginTop: '0px'}}>{listing.asset.name}</h1>
           <p>
             Owned by <b>{listing.sellerAddress?.slice(0, 6)}</b>
-          <p>{listing.asset.id?.tokenId}</p>
+          <p>{listing.asset.tokenid}</p>
           </p>
 </div>
-          <h2 style={{display: 'flex', alignItems: 'center', border: '2px dotted', padding: '5px 10px', height: 'fit-content'}}>
+<span>{listing.asset.description}</span>
+<div className={styles.priceContent}>
+          <h2 style={{display: 'flex', alignItems: 'center', border: '2px dotted', padding: '0 7px', height: 'fit-content', borderRadius: '25px'}}>
                     <i className={styles.polygon} style={{width: '34px', height: '34px'}}></i>
             <b>{listing.buyoutCurrencyValuePerToken.displayValue}</b>{" "}
             {listing.buyoutCurrencyValuePerToken.symbol}
@@ -168,9 +177,11 @@ export default function ListingPage() {
                 Make Offer
               </button>
             </div>
+</div>
           </div>
         </div>
       </div>
     </div>
+</>
   );
 }

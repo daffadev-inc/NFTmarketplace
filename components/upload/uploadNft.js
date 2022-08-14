@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Head from 'next/head'
 import {
   useMarketplace,
   useNetwork,
@@ -18,6 +19,8 @@ import Swal from 'sweetalert2';
 import { useRef } from "react";
 import styles from "../../styles/Theme.module.scss";
 
+const pageTitle = 'Upload NFT'
+const siteTitle = 'DaffaDev NFT marketplace'
 const Create = () => {
   // React SDK hooks
   const address = useAddress();
@@ -196,6 +199,10 @@ const Create = () => {
   };
 
   return (
+<>
+      <Head>
+        <title>{pageTitle} - {siteTitle}</title>
+      </Head>
     <form onSubmit={(e) => handleCreateListing(e)}>
       <div className={styles.container}>
 
@@ -303,6 +310,7 @@ const Create = () => {
         </div>
       </div>
     </form>
+</>
   );
 };
 

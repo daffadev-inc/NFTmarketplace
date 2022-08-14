@@ -209,6 +209,21 @@
   opacity: 0.8;
 }
 
+.priceContent {
+    text-align: center;
+    display: flex;
+    justify-items: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+@include mobile {
+    text-align: center;
+    display: flex;
+    justify-items: center;
+    flex-wrap: wrap;
+    justify-content: center;}
+}
 
 .mintCompletionArea {
   display: flex;
