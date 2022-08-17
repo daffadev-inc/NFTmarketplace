@@ -16,12 +16,10 @@
 }
 
 .collectionContainer {
-    width: 1124px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 1124px;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
     margin-top: 5%;
     margin-bottom: 5%;
 @include mobile {
@@ -363,16 +361,16 @@
 }
 
 .nftBox {
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid hsla(0,0%,100%,.3);
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.3);
+    background: hsla(0,0%,100%,.3);
     box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
-  min-height: 200px;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
+    min-height: 200px;
+    height: 405px;
+    color: inherit;
+    overflow: hidden;
 }
 
 .nftMedia {
