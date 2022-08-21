@@ -58,7 +58,7 @@ export default function Claim({ tokenDropContract }) {
 )}
 <div>
 <p/>
-<small>Token Contract :<br/> 0xcFf85eB0bdCE164274BF52eAf6A90da2251419c8</small>
+<small>Token Contract :<br/> 0xcFf85eB0bdCE164274BF52eAf6A90da2251419c8 <br />TESTnet on Mumbai network</small>
 </div>
     </div>
   );

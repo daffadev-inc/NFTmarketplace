@@ -30,7 +30,7 @@ export default function Create() {
 
   // Connect to our marketplace contract via the useMarketplace hook
   const marketplace = useMarketplace(
-    "0xcb86D7873bf1De2034b7E598D3db900c25406b77" // Your marketplace contract address here
+    MARKETPLACE_ADDRESS // Your marketplace contract address here
   );
 
   // This function gets called when the form is submitted.

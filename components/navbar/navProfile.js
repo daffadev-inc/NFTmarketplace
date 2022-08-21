@@ -25,7 +25,7 @@ export default function navProfile({ children, home }) {
           <a style={{color: '#ffeb3b'}} target="_blank" href="https://github.com/daffadev-inc/NFTmarketplace"  rel="noreferrer">thirdweb SDK</a>.
         </small>
         <div className={styles.backToHome}>
-          <Link href="/airdrop_uc">
+          <Link href="/airdrop">
             <a className={styles.button}>Airdrop Token   <IoChevronForwardOutline /> </a>
           </Link>
         </div>
